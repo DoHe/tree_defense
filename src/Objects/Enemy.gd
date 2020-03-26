@@ -2,10 +2,14 @@ extends Node2D
 
 export var speed : float = 200.0
 export var maxHealth : int = 100
+export var worth : int = 100
 onready var healthBar : ProgressBar = $HealthBar
+onready var line : Line2D = $line
+onready var game_controller := get_node("/root/GameController")
 
 var path : = PoolVector2Array() setget set_path
 var health : int = maxHealth
+var original_position : Vector2
 
 func _ready() -> void:
 	set_process(false)
@@ -19,7 +23,10 @@ func move_along_path(distance: float) -> void:
 	for _i in range(path.size()):
 		var distance_to_next : = starting_point.distance_to(path[0])
 		if distance <= distance_to_next and distance >= 0.0:
-			position = starting_point.linear_interpolate(path[0], distance / distance_to_next)
+			position = starting_point.linear_interpolate(
+				path[0],
+				distance / distance_to_next
+			)
 			break
 		elif distance < 0.0:
 			position = path[0]
@@ -30,6 +37,7 @@ func move_along_path(distance: float) -> void:
 
 func set_path(value: PoolVector2Array) -> void:
 	path = value
+	# line.points = path
 	if value.size() == 0:
 		return
 	set_process(true)
@@ -41,4 +49,5 @@ func hit(strength: int) -> void:
 		explode()
 
 func explode():
+	game_controller.update_seeds(worth)
 	queue_free()

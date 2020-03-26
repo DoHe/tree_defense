@@ -1,10 +1,10 @@
 extends Camera2D
 
-var zoom_step = 1.1
-var min_zoom = 0.5
-var max_zoom = 2.0
+export var zoom_step = 1.1
+export var min_zoom = 0.5
+export var max_zoom = 2.0
 
-var pan_speed = 800
+export var pan_speed = 800
 
 ## Rectangle used to limit camera panning.
 ## Note that the built in camera limits do not work: they don't actually constrain the position of the camera.

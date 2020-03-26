@@ -19,9 +19,17 @@ config/name="TreeDefence"
 run/main_scene="res://src/Levels/Level1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameController="*res://src/Controllers/GameController.tscn"
+
 [display]
 
-window/size/always_on_top=true
+window/size/width=1920
+window/size/height=1082
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [input]
 

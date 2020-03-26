@@ -33,10 +33,11 @@ margin_right = 33.8624
 margin_bottom = -17.5872
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
-max_value = 100.0
 value = 100.0
 rounded = true
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="line" type="Line2D" parent="."]

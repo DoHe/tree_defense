@@ -2,7 +2,7 @@ extends Area2D
 
 export var speed : int = 600
 export var steer_force : float = 800.0
-export var strength : int = 10
+export var strength : int = 30
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO

@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Tiles/road_fixed.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Objects/EnemySpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Scripts/Level.gd" type="Script" id=3]
 [ext_resource path="res://src/Objects/EnemyTarget.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/Camera.gd" type="Script" id=5]
-[ext_resource path="res://src/Objects/Tower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/UI.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node2D"]
@@ -42,12 +41,6 @@ initial_delay = 1
 position = Vector2( -114.786, 31.8733 )
 target_node_paths = [ NodePath("../EnemyTarget"), NodePath("../EnemyTarget2") ]
 initial_delay = 20
-
-[node name="Tower" parent="." instance=ExtResource( 6 )]
-position = Vector2( 338.936, 46.2927 )
-
-[node name="Tower2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 570.268, 265.993 )
 
 [node name="EnemyTarget" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1368.15, 507.686 )

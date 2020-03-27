@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var nav_2d: Navigation2D = get_node("/root/Level/Navigation2D")
-onready var enemyScene = preload("res://src/Objects/Enemy.tscn")
+onready var enemy_scene = preload("res://src/Objects/Enemy.tscn")
 
 export (Array, NodePath) var target_node_paths
 export var spawn_frequency = 3
@@ -31,7 +31,7 @@ func spawn() -> void:
 		for node_path in target_node_paths:
 			targets.append(get_node(node_path))
 
-	var enemy = enemyScene.instance()
+	var enemy = enemy_scene.instance()
 	add_child(enemy)
 	var path : = nav_2d.get_simple_path(
 		enemy.global_position,

@@ -1,33 +1,47 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/opensans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/seed icon.png" type="Texture" id=2]
 [ext_resource path="res://assets/opensans_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/trees/cherry_icon.png" type="Texture" id=4]
+[ext_resource path="res://assets/trees/cherry_icon_hover.png" type="Texture" id=5]
+[ext_resource path="res://assets/trees/cherry_icon_pressed.png" type="Texture" id=6]
+[ext_resource path="res://src/Objects/UI.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.2, 0.52549, 0, 1 )
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource( 7 )
 
-[node name="LifeContainer" type="VBoxContainer" parent="."]
+[node name="Life" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -100.0
+margin_left = -140.0
+margin_top = 20.0
+margin_right = -20.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LifeLabel" type="Label" parent="LifeContainer"]
-margin_right = 100.0
+[node name="Container" type="VBoxContainer" parent="Life"]
+margin_right = 120.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeLabel" type="Label" parent="Life/Container"]
+margin_right = 120.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 3 )
 text = "Life"
 align = 1
 
-[node name="LifeProgress" type="ProgressBar" parent="LifeContainer"]
+[node name="LifeProgress" type="ProgressBar" parent="Life/Container"]
 margin_top = 27.0
-margin_right = 100.0
+margin_right = 120.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 0 )
 custom_styles/fg = SubResource( 1 )
@@ -38,22 +52,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SeedsContainer" type="HBoxContainer" parent="."]
-margin_right = 80.0
+[node name="Seeds" type="MarginContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 81.0
 margin_bottom = 68.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SeedsIcon" type="TextureRect" parent="SeedsContainer"]
+[node name="Container" type="HBoxContainer" parent="Seeds"]
+margin_right = 81.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SeedsIcon" type="TextureRect" parent="Seeds/Container"]
 margin_right = 68.0
 margin_bottom = 68.0
 texture = ExtResource( 2 )
 
-[node name="SeedsLabel" type="Label" parent="SeedsContainer"]
+[node name="SeedsLabel" type="Label" parent="Seeds/Container"]
 margin_left = 72.0
 margin_top = 22.0
 margin_right = 81.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
+
+[node name="Shop" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -148.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trees" type="HBoxContainer" parent="Shop"]
+margin_right = 1890.0
+margin_bottom = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cherry" type="TextureButton" parent="Shop/Trees"]
+margin_right = 92.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+[connection signal="pressed" from="Shop/Trees/Cherry" to="." method="_on_Cherry_pressed"]

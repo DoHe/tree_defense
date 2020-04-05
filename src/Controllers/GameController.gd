@@ -8,6 +8,9 @@ onready var tree_cursor := preload("res://assets/trees/cherry_icon_pressed.png")
 onready var cherry_scene := preload("res://src/Objects/Tower.tscn")
 onready var count_label := get_node("/root/Level/UI/Seeds/Container/SeedsLabel")
 onready var life_progress := get_node("/root/Level/UI/Life/Container/LifeProgress")
+onready var wave_headline := get_node("/root/Level/UI/Wave/WaveHeadline")
+onready var wave_text := get_node("/root/Level/UI/Wave/WaveText")
+onready var timer_label := get_node("/root/Level/UI/Timer/TimerLabel")
 onready var level := get_node("/root/Level")
 onready var cursor_size : Vector2 = tree_cursor.get_size()
 
@@ -39,6 +42,8 @@ func restart_level() -> void:
 	get_tree().reload_current_scene()
 	
 func build(tree: String) -> void:
+	print("BUILD")
+	print(planting)
 	if planting:
 		return
 	match tree:
@@ -53,7 +58,9 @@ func build(tree: String) -> void:
 			)
 
 func plant(global_pos):
+	print("PLANT")
 	if not planting:
+		print("NOPE")
 		return
 		
 	match planting:
@@ -65,3 +72,17 @@ func plant(global_pos):
 			Input.set_custom_mouse_cursor(null)
 			update_seeds(-500)
 			planting = ""
+			
+func show_wave(wave: int) -> void:
+	wave_text.text = String(wave)
+	wave_headline.visible = true
+	wave_text.visible = true
+	yield(get_tree().create_timer(3.0), "timeout")
+	hide_wave()
+	
+func hide_wave() -> void:
+	wave_headline.visible = false
+	wave_text.visible = false
+	
+func update_timer(time: float) -> void:
+	timer_label.text = "Time to next wave: %.2fs" % time

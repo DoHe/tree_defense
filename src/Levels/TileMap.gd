@@ -2,7 +2,7 @@ extends TileMap
 
 onready var game_controller := get_node("/root/GameController")
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed("plant"):
 		var mouse_pos : = get_global_mouse_position()
 		var click_pos : = world_to_map(mouse_pos)

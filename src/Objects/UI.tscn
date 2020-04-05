@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/opensans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/seed icon.png" type="Texture" id=2]
@@ -7,9 +7,19 @@
 [ext_resource path="res://assets/trees/cherry_icon_hover.png" type="Texture" id=5]
 [ext_resource path="res://assets/trees/cherry_icon_pressed.png" type="Texture" id=6]
 [ext_resource path="res://src/Objects/UI.gd" type="Script" id=7]
+[ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/OpenSans-Bold.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.2, 0.52549, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 70
+font_data = ExtResource( 8 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 7 )
@@ -105,4 +115,51 @@ margin_bottom = 128.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
+
+[node name="Wave" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -163.5
+margin_top = -132.5
+margin_right = 163.5
+margin_bottom = 132.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaveHeadline" type="Label" parent="Wave"]
+visible = false
+margin_right = 327.0
+margin_bottom = 165.0
+custom_fonts/font = SubResource( 2 )
+text = "Wave"
+align = 1
+
+[node name="WaveText" type="Label" parent="Wave"]
+visible = false
+margin_right = 327.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+
+[node name="Timer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -80.5
+margin_top = 20.0
+margin_right = 80.5
+margin_bottom = 23.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="Timer"]
+margin_right = 161.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 1 )
+text = "Time to next wave: 0s"
+align = 1
 [connection signal="pressed" from="Shop/Trees/Cherry" to="." method="_on_Cherry_pressed"]

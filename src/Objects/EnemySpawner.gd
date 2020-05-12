@@ -75,21 +75,21 @@ func spawn_enemy(type: String) -> void:
 			enemy = car_scene.instance()
 		_:
 			return
-	var path : = nav_2d.get_simple_path(
-		enemy.global_position,
-		targets[target_idx].global_position
-	)
 	var path_node = Path2D.new()
 	var path_follower = PathFollow2D.new()
 	path_node.add_child(path_follower)
-	path_node.add_child(enemy)
+	path_follower.add_child(enemy)
 	add_child(path_node)
+	var path : = nav_2d.get_simple_path(
+		path_node.global_position,
+		targets[target_idx].global_position
+	)
 	
 	var normalized_path = Curve2D.new()
 	for point in path:
 		normalized_path.add_point(enemy.to_local(point))
 	path_node.curve = normalized_path
-	# enemy.path = normalized_path
+	enemy.set_process(true)
 	target_idx += 1
 	if target_idx >= len(targets):
 		target_idx = 0

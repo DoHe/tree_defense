@@ -32,6 +32,7 @@ script = ExtResource( 5 )
 position = Vector2( -298.808, 114.666 )
 wave_config_path = "res://src/Levels/Level2.json"
 target_node_paths = [ NodePath("../EnemyTarget"), NodePath("../EnemyTarget2") ]
+initial_delay = 0.0
 
 [node name="EnemyTarget" parent="." instance=ExtResource( 4 )]
 position = Vector2( 373.35, 111.535 )

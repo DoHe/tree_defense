@@ -1,8 +1,9 @@
 extends Node2D
 
 onready var nav_2d: Navigation2D = get_node("/root/Level/Navigation2D")
-onready var car_scene = preload("res://src/Objects/Enemy.tscn")
+onready var enemy_scene = preload("res://src/Objects/Enemy.tscn")
 onready var game_controller := get_node("/root/GameController")
+onready var truck_sprite = preload("res://assets/cars2/Cars/truck.png")
 
 export (String, FILE, "*.json") var wave_config_path: String
 export (Array, NodePath) var target_node_paths
@@ -72,7 +73,14 @@ func spawn_enemy(type: String) -> void:
 	var enemy
 	match type:
 		"car":
-			enemy = car_scene.instance()
+			enemy = enemy_scene.instance()
+		"truck":
+			enemy = enemy_scene.instance()
+			enemy.speed = 100
+			enemy.worth = 200
+			enemy.health = 400
+			enemy.damage = 20
+			enemy.set_texture(truck_sprite) 
 		_:
 			return
 	var path_node = Path2D.new()

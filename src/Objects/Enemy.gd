@@ -1,11 +1,13 @@
 extends Node2D
 
-export var speed : float = 80.0
+export var speed : float = 200.0
 export var maxHealth : int = 100
 export var worth : int = 100
+export var damage : int = 10
 onready var healthBar : ProgressBar = $HealthBar
-onready var line : Line2D = $line
+onready var sprite : Sprite = $sprite
 onready var game_controller := get_node("/root/GameController")
+var texture : StreamTexture
 
 var health : int = maxHealth
 var original_position : Vector2
@@ -18,8 +20,9 @@ func _process(delta: float) -> void:
 	follow(move_distance)
 	
 func follow(distance: float) -> void:
+	if texture:
+		sprite.texture = texture	
 	var follow : PathFollow2D = get_parent()
-	print("Offset: ", follow.get_offset())
 	follow.set_offset(follow.get_offset() + distance)
 
 func hit(strength: int) -> void:
@@ -31,3 +34,6 @@ func hit(strength: int) -> void:
 func explode():
 	game_controller.update_seeds(worth)
 	queue_free()
+
+func set_texture(txt: StreamTexture) -> void:
+	texture = txt

@@ -7,5 +7,8 @@ func _input(event):
 		var mouse_pos : = get_global_mouse_position()
 		var click_pos : = world_to_map(mouse_pos)
 		var cell : = get_cell(click_pos.x, click_pos.y)
-		if tile_set.tile_get_name(cell) == "dirt":
+		if cell == -1:
+			return
+		var tile_name : = tile_set.tile_get_name(cell)
+		if tile_name in ["dirt"]:
 			game_controller.plant(mouse_pos)

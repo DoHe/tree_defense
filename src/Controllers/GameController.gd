@@ -14,7 +14,6 @@ onready var timer_label := get_node("/root/Level/UI/Timer/TimerLabel")
 onready var level := get_node("/root/Level")
 onready var cursor_size : Vector2 = tree_cursor.get_size()
 
-
 func _ready():
 	update_seeds(0)
 	update_life(0)
@@ -42,8 +41,6 @@ func restart_level() -> void:
 	get_tree().reload_current_scene()
 	
 func build(tree: String) -> void:
-	print("BUILD")
-	print(planting)
 	if planting:
 		return
 	match tree:
@@ -58,16 +55,14 @@ func build(tree: String) -> void:
 			)
 
 func plant(global_pos):
-	print("PLANT")
 	if not planting:
-		print("NOPE")
 		return
 		
 	match planting:
 		"cherry":
 			var cherry := cherry_scene.instance()
 			level.add_child(cherry)
-			var offset := Vector2(0, cursor_size.y/2)
+			var offset := Vector2(0, cursor_size.y/4)
 			cherry.global_position = global_pos - offset
 			Input.set_custom_mouse_cursor(null)
 			update_seeds(-500)

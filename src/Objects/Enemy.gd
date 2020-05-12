@@ -1,6 +1,6 @@
 extends Node2D
 
-export var speed : float = 200.0
+export var speed : float = 180.0
 export var maxHealth : int = 100
 export var worth : int = 100
 onready var healthBar : ProgressBar = $HealthBar
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var move_distance : = speed * delta
-	move_along_path(move_distance)
+	# move_along_path(move_distance)
 
 func move_along_path(distance: float) -> void:
 	var starting_point : = position

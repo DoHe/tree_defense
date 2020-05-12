@@ -1,8 +1,8 @@
 extends Camera2D
 
 export var zoom_step = 1.1
-export var min_zoom = 0.5
-export var max_zoom = 2.0
+export var min_zoom = 0.25
+export var max_zoom = 0.75
 
 export var pan_speed = 800
 
@@ -14,7 +14,7 @@ var limit_rect = null setget set_limit_rect
 
 var mouse_captured = false
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_pressed("view_zoom_in"):
 		zoom /= zoom_step
 		_snap_zoom_limits()

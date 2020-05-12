@@ -64,7 +64,7 @@ func spawn_next_wave() -> void:
 		spawn_enemies(type, wave_config[type])
 		
 func spawn_enemies(type: String, num: int) -> void:
-	for i in range(num):
+	for _i in range(num):
 		spawn_enemy(type)
 		yield(get_tree().create_timer(1.0), "timeout")
 
@@ -75,15 +75,21 @@ func spawn_enemy(type: String) -> void:
 			enemy = car_scene.instance()
 		_:
 			return
-	add_child(enemy)
 	var path : = nav_2d.get_simple_path(
 		enemy.global_position,
 		targets[target_idx].global_position
 	)
-	var normalized_path = PoolVector2Array([])
+	var path_node = Path2D.new()
+	var path_follower = PathFollow2D.new()
+	path_node.add_child(path_follower)
+	path_node.add_child(enemy)
+	add_child(path_node)
+	
+	var normalized_path = Curve2D.new()
 	for point in path:
-		normalized_path.append(to_local(point))
-	enemy.path = normalized_path
+		normalized_path.add_point(enemy.to_local(point))
+	path_node.curve = normalized_path
+	# enemy.path = normalized_path
 	target_idx += 1
 	if target_idx >= len(targets):
 		target_idx = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/opensans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/seed icon.png" type="Texture" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://src/Objects/UI.gd" type="Script" id=7]
 [ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/OpenSans-Bold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/trees/ice_icon_pressed.png" type="Texture" id=10]
+[ext_resource path="res://assets/trees/ice_icon_hover.png" type="Texture" id=11]
+[ext_resource path="res://assets/trees/ice_icon.png" type="Texture" id=12]
+[ext_resource path="res://assets/trees/big_icon_hover.png" type="Texture" id=13]
+[ext_resource path="res://assets/trees/big_icon_pressed.png" type="Texture" id=14]
+[ext_resource path="res://assets/trees/big_icon.png" type="Texture" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.2, 0.52549, 0, 1 )
@@ -20,6 +26,14 @@ font_data = ExtResource( 9 )
 [sub_resource type="DynamicFont" id=3]
 size = 70
 font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 9 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 7 )
@@ -72,7 +86,7 @@ __meta__ = {
 }
 
 [node name="Container" type="HBoxContainer" parent="Seeds"]
-margin_right = 81.0
+margin_right = 79.0
 margin_bottom = 68.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,9 +99,9 @@ texture = ExtResource( 2 )
 
 [node name="SeedsLabel" type="Label" parent="Seeds/Container"]
 margin_left = 72.0
-margin_top = 22.0
-margin_right = 81.0
-margin_bottom = 45.0
+margin_top = 25.0
+margin_right = 79.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
 
@@ -95,26 +109,131 @@ text = "0"
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = -148.0
-margin_bottom = -20.0
+margin_left = 50.0
+margin_top = -265.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trees" type="HBoxContainer" parent="Shop"]
-margin_right = 1890.0
-margin_bottom = 128.0
+margin_right = 1870.0
+margin_bottom = 265.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cherry" type="TextureButton" parent="Shop/Trees"]
+[node name="CherryContainer" type="VBoxContainer" parent="Shop/Trees"]
 margin_right = 92.0
-margin_bottom = 128.0
+margin_bottom = 265.0
+
+[node name="DescriptionContainer" type="Control" parent="Shop/Trees/CherryContainer"]
+margin_right = 92.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Description" type="Label" parent="Shop/Trees/CherryContainer/DescriptionContainer"]
+visible = false
+margin_top = 3.0
+margin_right = 92.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "The allrounder. Medium shooting frequency and damage."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="Label" parent="Shop/Trees/CherryContainer"]
+margin_top = 104.0
+margin_right = 92.0
+margin_bottom = 118.0
+text = "Cherry - 500"
+align = 1
+
+[node name="Cherry" type="TextureButton" parent="Shop/Trees/CherryContainer"]
+margin_top = 122.0
+margin_right = 92.0
+margin_bottom = 250.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
+
+[node name="IceContainer" type="VBoxContainer" parent="Shop/Trees"]
+margin_left = 96.0
+margin_right = 210.0
+margin_bottom = 265.0
+
+[node name="DescriptionContainer" type="Control" parent="Shop/Trees/IceContainer"]
+margin_right = 114.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Description" type="Label" parent="Shop/Trees/IceContainer/DescriptionContainer"]
+visible = false
+margin_top = 3.0
+margin_right = 114.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "Make it snow. Low damage, but slows down the enemy."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="Label" parent="Shop/Trees/IceContainer"]
+margin_top = 104.0
+margin_right = 114.0
+margin_bottom = 118.0
+text = "Ice - 800"
+align = 1
+
+[node name="Ice" type="TextureButton" parent="Shop/Trees/IceContainer"]
+margin_top = 122.0
+margin_right = 114.0
+margin_bottom = 250.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 11 )
+
+[node name="BigContainer" type="VBoxContainer" parent="Shop/Trees"]
+margin_left = 214.0
+margin_right = 328.0
+margin_bottom = 265.0
+
+[node name="DescriptionContainer" type="Control" parent="Shop/Trees/BigContainer"]
+margin_right = 114.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Description" type="Label" parent="Shop/Trees/BigContainer/DescriptionContainer"]
+visible = false
+margin_top = 3.0
+margin_right = 114.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 1 )
+text = "BOOM! It might be slow, but the area damage more than makes up for it."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="Label" parent="Shop/Trees/BigContainer"]
+margin_top = 104.0
+margin_right = 114.0
+margin_bottom = 118.0
+text = "Biggy - 1000"
+align = 1
+
+[node name="Big" type="TextureButton" parent="Shop/Trees/BigContainer"]
+margin_top = 122.0
+margin_right = 114.0
+margin_bottom = 251.0
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
 
 [node name="Wave" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -145,7 +264,7 @@ custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
 
-[node name="Timer" type="MarginContainer" parent="."]
+[node name="WaveInfo" type="MarginContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -80.5
@@ -156,10 +275,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimerLabel" type="Label" parent="Timer"]
+[node name="Container" type="VBoxContainer" parent="WaveInfo"]
 margin_right = 161.0
-margin_bottom = 23.0
+margin_bottom = 41.0
+
+[node name="WaveLabel" type="Label" parent="WaveInfo/Container"]
+margin_right = 161.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 4 )
+text = "Level 1 - Wave 1"
+align = 1
+
+[node name="TimerLabel" type="Label" parent="WaveInfo/Container"]
+margin_top = 24.0
+margin_right = 161.0
+margin_bottom = 41.0
 custom_fonts/font = ExtResource( 1 )
 text = "Time to next wave: 0s"
 align = 1
-[connection signal="pressed" from="Shop/Trees/Cherry" to="." method="_on_Cherry_pressed"]
+
+[node name="GameOver" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -114.5
+margin_top = -34.5
+margin_right = 114.5
+margin_bottom = 34.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOver"]
+visible = false
+margin_right = 229.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 5 )
+text = "You won!"
+[connection signal="mouse_entered" from="Shop/Trees/CherryContainer/Cherry" to="." method="_on_Cherry_mouse_entered"]
+[connection signal="mouse_exited" from="Shop/Trees/CherryContainer/Cherry" to="." method="_on_Cherry_mouse_exited"]
+[connection signal="pressed" from="Shop/Trees/CherryContainer/Cherry" to="." method="_on_Cherry_pressed"]
+[connection signal="mouse_entered" from="Shop/Trees/IceContainer/Ice" to="." method="_on_Ice_mouse_entered"]
+[connection signal="mouse_exited" from="Shop/Trees/IceContainer/Ice" to="." method="_on_Ice_mouse_exited"]
+[connection signal="pressed" from="Shop/Trees/IceContainer/Ice" to="." method="_on_Ice_pressed"]
+[connection signal="mouse_entered" from="Shop/Trees/BigContainer/Big" to="." method="_on_Big_mouse_entered"]
+[connection signal="mouse_exited" from="Shop/Trees/BigContainer/Big" to="." method="_on_Big_mouse_exited"]
+[connection signal="pressed" from="Shop/Trees/BigContainer/Big" to="." method="_on_Big_pressed"]

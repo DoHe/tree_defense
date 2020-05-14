@@ -7,4 +7,5 @@ func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
 		return
 	var enemy = area.get_parent() 
 	game_controller.update_life(-enemy.damage)
+	enemy.died()
 	enemy.queue_free()

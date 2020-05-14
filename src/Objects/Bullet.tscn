@@ -1,17 +1,34 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/trees/cherry_leaf_1.png" type="Texture" id=1]
 [ext_resource path="res://Bullet.gd" type="Script" id=2]
+[ext_resource path="res://assets/circle_red.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 10.9671
 
-[node name="Bullet" type="Area2D"]
+[sub_resource type="CircleShape2D" id=2]
+radius = 86.5027
+
+[node name="Bullet" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="leaf" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BulletArea" type="Area2D" parent="."]
+
+[node name="BulletShape" type="CollisionShape2D" parent="BulletArea"]
 shape = SubResource( 1 )
-[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="circle" type="Sprite" parent="ExplosionArea"]
+visible = false
+scale = Vector2( 0.85, 0.85 )
+z_index = -900
+texture = ExtResource( 3 )
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource( 2 )
+[connection signal="area_entered" from="BulletArea" to="." method="_on_Bullet_area_entered"]

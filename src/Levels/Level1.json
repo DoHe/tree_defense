@@ -1,20 +1,92 @@
 [
     {
-        "car": 2,
-        "truck": 1,
-        "break": 0
+        "enemies": [
+            {
+                "type": "car",
+                "count": "2",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 1,
+        "break": 0,
     },
     {
-        "car": 4,
-        "break": 15
+        "enemies": [
+            {
+                "type": "car",
+                "count": "4",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 1,
+        "break": 15,
     },
     {
-        "car": 10,
-        "break": 20
+        "enemies": [
+            {
+                "type": "car",
+                "count": "8",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 2,
+        "break": 20,
     },
     {
-        "car": 10,
-        "truck": 5,
-        "break": 20
+        "enemies": [
+            {
+                "type": "car",
+                "count": "10",
+            },
+            {
+                "type": "truck",
+                "count": "2",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 2,
+        "break": 20,
+    },
+    {
+        "enemies": [
+            {
+                "type": "car",
+                "count": "8",
+            },
+            {
+                "type": "truck",
+                "count": "2",
+            },
+            {
+                "type": "tractor",
+                "count": "1",
+            },
+            {
+                "type": "car",
+                "count": "7",
+            },
+            {
+                "type": "truck",
+                "count": "2",
+            },
+            {
+                "type": "tractor",
+                "count": "1",
+            }
+        ],
+        "frequency": 2,
+        "parallelism": 2,
+        "break": 20,
+    },
+    {
+        "enemies": [
+            {
+                "type": "towtruck",
+                "count": "3",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 4,
+        "break": 50,
     }
 ]

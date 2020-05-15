@@ -1,0 +1,68 @@
+[
+    {
+        "enemies": [
+            {
+                "type": "car",
+                "count": "6",
+            },
+        ],
+        "frequency": 1.2,
+        "parallelism": 1,
+        "break": 0,
+    },
+    {
+        "enemies": [
+            {
+                "type": "car",
+                "count": "8",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 2,
+        "break": 15,
+    },
+    {
+        "enemies": [
+            {
+                "type": "car",
+                "count": "12",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 3,
+        "break": 20,
+    },
+    {
+        "enemies": [
+            {
+                "type": "car",
+                "count": "20",
+            },
+        ],
+        "frequency": 3,
+        "parallelism": 4,
+        "break": 20,
+    },
+    {
+        "enemies": [
+            {
+                "type": "tractor",
+                "count": "20",
+            },
+        ],
+        "frequency": 3,
+        "parallelism": 2,
+        "break": 20,
+    },
+    {
+        "enemies": [
+            {
+                "type": "towtruck",
+                "count": "8",
+            },
+        ],
+        "frequency": 2,
+        "parallelism": 2,
+        "break": 50,
+    }
+]

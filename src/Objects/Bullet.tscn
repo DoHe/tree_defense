@@ -8,7 +8,7 @@
 radius = 10.9671
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 86.5027
+radius = 73.9471
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 2 )
@@ -25,7 +25,7 @@ shape = SubResource( 1 )
 
 [node name="circle" type="Sprite" parent="ExplosionArea"]
 visible = false
-scale = Vector2( 0.85, 0.85 )
+scale = Vector2( 0.73, 0.73 )
 z_index = -900
 texture = ExtResource( 3 )
 

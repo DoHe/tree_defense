@@ -1,27 +1,51 @@
 extends Node2D
 
-var seeds: int = 1000
-var life: int = 100
-var game_over: bool = false
-var planting: String = ""
-var num_enemy_spawners: int = 0
+var startingSeed: int = 1000
+var startingLife: int = 100
+var seeds: int = startingSeed
+var life: int = startingLife
+var game_over: bool
+var planting: String
+var num_enemy_spawners: int
+var level_num: int = 1
 onready var cherry_cursor := preload("res://assets/trees/cherry_icon_pressed.png")
 onready var ice_cursor := preload("res://assets/trees/ice_icon_pressed.png")
-onready var big_cursor := preload("res://assets/trees/big_icon_pressed.png")
+onready var big_cursor := preload("res://assets/trees/big_icon_cursor.png")
 onready var tower_scene := preload("res://src/Objects/Tower.tscn")
-onready var count_label := get_node("/root/Level/UI/Seeds/Container/SeedsLabel")
-onready var life_progress := get_node("/root/Level/UI/Life/Container/LifeProgress")
-onready var wave_headline := get_node("/root/Level/UI/Wave/WaveHeadline")
-onready var wave_text := get_node("/root/Level/UI/Wave/WaveText")
-onready var timer_label := get_node("/root/Level/UI/WaveInfo/Container/TimerLabel")
-onready var wave_label := get_node("/root/Level/UI/WaveInfo/Container/WaveLabel")
-onready var game_over_label := get_node("/root/Level/UI/GameOver/Label")
-onready var enemy_spawner := get_node("/root/Level/EnemySpawner")
-onready var level := get_node("/root/Level")
+var count_label
+var life_progress
+var wave_headline
+var wave_text
+var timer_label
+var wave_label
+var game_over_label
+var enemy_spawner
+var level
 
 func _ready():
+	reset()
+	get_references()
+	
+func reset():
+	seeds = startingSeed
+	life = startingLife
+	game_over = false
+	planting = ""
+	num_enemy_spawners = 0
+	
+func get_references():
+	count_label = get_node("/root/Level/UI/Seeds/Container/SeedsLabel")
+	life_progress = get_node("/root/Level/UI/Life/Container/LifeProgress")
+	wave_headline = get_node("/root/Level/UI/Wave/WaveHeadline")
+	wave_text = get_node("/root/Level/UI/Wave/WaveText")
+	timer_label = get_node("/root/Level/UI/WaveInfo/Container/TimerLabel")
+	wave_label = get_node("/root/Level/UI/WaveInfo/Container/WaveLabel")
+	game_over_label = get_node("/root/Level/UI/GameOver/Label")
+	enemy_spawner = get_node("/root/Level/EnemySpawner")
+	level = get_node("/root/Level")
 	update_seeds(0)
 	update_life(0)
+	update_wave_label("1")
 	
 func update_seeds(change: int) -> void:
 	seeds += change
@@ -39,52 +63,43 @@ func player_died() -> void:
 	game_over_label.text = "You lost :("
 	game_over_label.visible = true
 	
-func restart_level() -> void:
-	seeds = 0
-	game_over = false
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-	
 func register_enemy_spawner() -> void:
 	num_enemy_spawners += 1
 	
 func all_enemies_gone() -> void:
 	num_enemy_spawners -= 1
 	if not num_enemy_spawners:
-		game_over_label.visible = true
+		level_num += 1
+		if level_num > 2:
+			game_over_label.visible = true
+			get_tree().paused = true
+			return
+		get_tree().change_scene("res://src/Levels/Level" + String(level_num) + ".tscn")
+		reset()
+		
+func set_cursor(cursor):
+	var cursor_size : Vector2 = cursor.get_size()
+	Input.set_custom_mouse_cursor(
+		cursor,
+		0,
+		Vector2(cursor_size.x/2, cursor_size.y)
+	)
 	
 func build(tree: String) -> void:
 	match tree:
 		"cherry":
 			if seeds < 500:
 				return
-			planting = tree
-			var cursor_size : Vector2 = cherry_cursor.get_size()
-			Input.set_custom_mouse_cursor(
-				cherry_cursor,
-				0,
-				Vector2(cursor_size.x/2, cursor_size.y)
-			)
+			set_cursor(cherry_cursor)
 		"ice":
 			if seeds < 800:
 				return
-			planting = tree
-			var cursor_size : Vector2 = ice_cursor.get_size()
-			Input.set_custom_mouse_cursor(
-				ice_cursor,
-				0,
-				Vector2(cursor_size.x/2, cursor_size.y)
-			)
+			set_cursor(ice_cursor)
 		"big":
 			if seeds < 1000:
 				return
-			planting = tree
-			var cursor_size : Vector2 = big_cursor.get_size()
-			Input.set_custom_mouse_cursor(
-				big_cursor,
-				0,
-				Vector2(cursor_size.x/2, cursor_size.y)
-			)
+			set_cursor(big_cursor)
+	planting = tree
 			
 func cancel_build():
 	if not planting:
@@ -128,17 +143,22 @@ func plant(global_pos):
 			
 func show_wave(wave: int) -> void:
 	var wave_str := String(wave)
-	wave_label.text = "Level 1 - Wave " + wave_str
+	update_wave_label(wave_str)
 	wave_text.text = wave_str
 	wave_headline.visible = true
 	wave_text.visible = true
 	yield(get_tree().create_timer(3.0), "timeout")
 	hide_wave()
 	
+func update_wave_label(wave: String) -> void:
+	wave_label.text = "Level " + String(level_num) + " - Wave " + wave
+	
 func hide_wave() -> void:
 	wave_headline.visible = false
 	wave_text.visible = false
 	
 func update_timer(time: float) -> void:
+	if not is_instance_valid(timer_label):
+		return
 	timer_label.text = "Time to next wave: %.2fs" % time
 	

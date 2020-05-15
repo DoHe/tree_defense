@@ -112,7 +112,7 @@ func spawn_enemy(type: String, position: Vector2=global_position) -> void:
 		"tractor":
 			enemy = enemy_scene.instance()
 			enemy.speed = 50
-			enemy.worth = 300
+			enemy.worth = 180
 			enemy.health = 700
 			enemy.maxHealth = 700
 			enemy.damage = 50
@@ -120,7 +120,7 @@ func spawn_enemy(type: String, position: Vector2=global_position) -> void:
 		"towtruck":
 			enemy = enemy_scene.instance()
 			enemy.speed = 100
-			enemy.worth = 300
+			enemy.worth = 200
 			enemy.health = 300
 			enemy.maxHealth = 300
 			enemy.damage = 30
@@ -138,7 +138,6 @@ func spawn_enemy(type: String, position: Vector2=global_position) -> void:
 		path_node.global_position,
 		targets[target_idx].global_position
 	)
-	
 	var normalized_path = Curve2D.new()
 	for point in path:
 		normalized_path.add_point(enemy.to_local(point))

@@ -2,6 +2,9 @@ extends Node
 
 onready var game_controller := get_node("/root/GameController")
 
+func _ready():
+	game_controller.get_references()
+
 func _input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return

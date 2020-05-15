@@ -58,9 +58,9 @@ func set_kind(knd: String):
 			max_bullets = 2
 		"big":
 			sprite.texture = big_texture
-			shot_frequency = 1.5
+			shot_frequency = 2.5
 			target_area.transform = target_area.transform.scaled(
-				Vector2(1.1, 1.1)
+				Vector2(1, 1)
 			)
 			max_bullets = 1
 

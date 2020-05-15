@@ -71,9 +71,13 @@ func all_enemies_gone() -> void:
 	if not num_enemy_spawners:
 		level_num += 1
 		if level_num > 2:
+			game_over_label.text = "You won! :)"
 			game_over_label.visible = true
 			get_tree().paused = true
 			return
+		game_over_label.text = "You won this level, but here is more!"
+		game_over_label.visible = true
+		yield(get_tree().create_timer(3.0), "timeout")
 		get_tree().change_scene("res://src/Levels/Level" + String(level_num) + ".tscn")
 		reset()
 		
@@ -96,7 +100,7 @@ func build(tree: String) -> void:
 				return
 			set_cursor(ice_cursor)
 		"big":
-			if seeds < 1000:
+			if seeds < 1100:
 				return
 			set_cursor(big_cursor)
 	planting = tree
@@ -138,7 +142,7 @@ func plant(global_pos):
 			var cursor_size : Vector2 = big_cursor.get_size()
 			var offset := Vector2(0, cursor_size.y/4)
 			big.global_position = global_pos - offset
-			update_seeds(-1000)
+			update_seeds(-1100)
 			cancel_build()
 			
 func show_wave(wave: int) -> void:

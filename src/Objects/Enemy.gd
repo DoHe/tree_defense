@@ -50,11 +50,11 @@ func died():
 
 func explode():
 	game_controller.update_seeds(worth)
-	died()
 	if kind == "towtruck":
 		enemy_spawner.spawn_enemy("car", global_position)
 		yield(get_tree().create_timer(0.2), "timeout")
 		enemy_spawner.spawn_enemy("car", global_position)
+	died()
 	queue_free()
 
 func set_texture(txt: StreamTexture) -> void:

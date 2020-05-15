@@ -47,7 +47,7 @@
         "enemies": [
             {
                 "type": "tractor",
-                "count": "20",
+                "count": "10",
             },
         ],
         "frequency": 3,
@@ -58,7 +58,7 @@
         "enemies": [
             {
                 "type": "towtruck",
-                "count": "8",
+                "count": "6",
             },
         ],
         "frequency": 2,

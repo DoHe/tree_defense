@@ -70,7 +70,7 @@ func all_enemies_gone() -> void:
 	num_enemy_spawners -= 1
 	if not num_enemy_spawners:
 		level_num += 1
-		if level_num > 2:
+		if level_num > 3:
 			game_over_label.text = "You won! :)"
 			game_over_label.visible = true
 			get_tree().paused = true

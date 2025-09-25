@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/pipo-map001_at-miti.png-242e6b0fc09257c53bee90050b353ddc.stex"
+type="CompressedTexture2D"
+uid="uid://d1ekr2wf8faml"
+path="res://.godot/imported/pipo-map001_at-miti.png-242e6b0fc09257c53bee90050b353ddc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,24 @@ metadata={
 [deps]
 
 source_file="res://assets/topdown/rpg/48x48/[A]_type3/pipo-map001_at-miti.png"
-dest_files=[ "res://.import/pipo-map001_at-miti.png-242e6b0fc09257c53bee90050b353ddc.stex" ]
+dest_files=["res://.godot/imported/pipo-map001_at-miti.png-242e6b0fc09257c53bee90050b353ddc.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=true
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

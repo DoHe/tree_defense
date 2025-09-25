@@ -1,0 +1,12 @@
+res://default_env.tres
+res://src/Objects/EnemySpawner.gd
+res://src/Levels/Level1.tscn
+res://src/Tiles/rpg_td.tres
+res://src/Objects/Enemy.gd
+res://src/Objects/Enemy.tscn
+res://src/Levels/Camera.gd
+res://src/Controllers/GameController.gd
+res://src/Objects/UI.gd
+res://src/Levels/TileMapLayer.gd
+res://src/Objects/Tower.gd
+res://src/Objects/EnemyTarget.gd

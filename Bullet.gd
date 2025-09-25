@@ -1,23 +1,24 @@
 extends Node2D
 
-onready var ice_texture = preload("res://assets/snowflake.png")
-onready var big_texture = preload("res://assets/fruit/fruitassets_08.png")
-onready var sprite : Sprite = $leaf
-onready var explosion_sprite : Sprite = $ExplosionArea/circle
-onready var explosion_area : Area2D = $ExplosionArea
-export var speed : int = 600
-export var steer_force : float = 800.0
-export var strength : int = 30
+@onready var ice_texture = preload("res://assets/snowflake.png")
+@onready var big_texture = preload("res://assets/fruit/fruitassets_08.png")
+@onready var sprite: Sprite2D = $leaf
+@onready var explosion_sprite: Sprite2D = $ExplosionArea/circle
+@onready var explosion_area: Area2D = $ExplosionArea
+@export var speed: int = 600
+@export var steer_force: float = 800.0
+@export var strength: int = 30
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
 var target = null
 var target_position = null
-var texture : StreamTexture
-var kind : String = "cherry"
+var texture: CompressedTexture2D
+var kind: String = "cherry"
 var seeking: bool = true
 var area_damage: bool = false
-var exploded : bool = false
+var exploded: bool = false
+
 
 func start(_transform, _target):
 	if texture:
@@ -25,32 +26,35 @@ func start(_transform, _target):
 	global_transform = _transform
 	target = _target
 	if seeking:
-		rotation += rand_range(-0.09, 0.09)
+		rotation += randf_range(-0.09, 0.09)
 		velocity = transform.x * speed
 	else:
 		target_position = _target.global_position
 
+
 func steer():
-	var steer = Vector2.ZERO
+	var steerVec = Vector2.ZERO
 	if target and is_instance_valid(target):
 		var desired = (target.global_position - global_position).normalized() * speed
-		steer = (desired - velocity).normalized() * steer_force
-	return steer
-	
+		steerVec = (desired - velocity).normalized() * steer_force
+	return steerVec
+
+
 func seek(delta: float):
 	if target and not is_instance_valid(target):
 		explode()
 	acceleration += steer()
 	velocity += acceleration * delta
-	velocity = velocity.clamped(speed)
+	velocity = velocity.limit_length(speed)
 	rotation = velocity.angle()
 	global_position += velocity * delta
+
 
 func _physics_process(delta):
 	if seeking:
 		seek(delta)
 	else:
-		var distance : Vector2 = target_position - global_position
+		var distance: Vector2 = target_position - global_position
 		if area_damage and distance.length() <= 0.1:
 			explode()
 		velocity = speed * distance.normalized()
@@ -59,10 +63,12 @@ func _physics_process(delta):
 			new_position = target_position
 		global_position = new_position
 
+
 func _on_Bullet_area_entered(area: Area2D) -> void:
 	if area == target and not area_damage and area.is_in_group("enemies"):
 		area.get_parent().hit(strength, kind)
 		explode()
+
 
 func explode():
 	if exploded:
@@ -72,18 +78,19 @@ func explode():
 		explosion_sprite.visible = true
 		sprite.visible = false
 		var targets = explosion_area.get_overlapping_areas()
-		for target in targets:
-			if !target.is_in_group("enemies"):
+		for _target in targets:
+			if !_target.is_in_group("enemies"):
 				continue
-			target.get_parent().hit(strength, kind)
-		yield(get_tree().create_timer(0.7), "timeout")
+				_target.get_parent().hit(strength, kind)
+		await get_tree().create_timer(0.7).timeout
 		explosion_sprite.visible = false
 	#$Particles2D.emitting = false
 	#set_physics_process(false)
 	#$AnimationPlayer.play("explode")
 	#yield($AnimationPlayer, "animation_finished")
 	queue_free()
-	
+
+
 func set_kind(knd: String):
 	kind = knd
 	match kind:

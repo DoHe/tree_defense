@@ -1,41 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bq6cetprs1ioy"]
 
-[ext_resource path="res://src/Objects/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/cars2/Cars/formula.png" type="Texture" id=2]
+[ext_resource type="Script" uid="uid://n67jggn7av3o" path="res://src/Objects/Enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://8c26aajkdco4" path="res://assets/cars2/Cars/formula.png" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18.0604, 7.13065 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.145098, 0.694118, 0.0117647, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(18.0604, 7.13065)
 
 [node name="Enemy" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 speed = 150.0
 
-[node name="sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
-[node name="Area2D" type="Area2D" parent="." groups=[
-"enemies",
-]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-margin_left = -27.0184
-margin_top = -23.2936
-margin_right = 27.9816
-margin_bottom = -16.2936
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+offset_left = -27.0184
+offset_top = -23.2936
+offset_right = 27.9816
+offset_bottom = -16.2936
 value = 100.0
 rounded = true
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true

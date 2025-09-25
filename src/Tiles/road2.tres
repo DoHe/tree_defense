@@ -1,22 +1,22 @@
 [gd_resource type="TileSet" load_steps=10 format=2]
 
-[ext_resource path="res://assets/road/png/road.png" type="Texture" id=1]
-[ext_resource path="res://assets/road/png/grass.png" type="Texture" id=2]
-[ext_resource path="res://assets/road/png/roadEW.png" type="Texture" id=3]
-[ext_resource path="res://assets/road/png/water.png" type="Texture" id=4]
-[ext_resource path="res://assets/road/png/roadNS.png" type="Texture" id=5]
-[ext_resource path="res://assets/road/png/roadSW.png" type="Texture" id=6]
-[ext_resource path="res://assets/road/png/roadNW.png" type="Texture" id=7]
+[ext_resource path="res://assets/road/png/road.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/road/png/grass.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/road/png/roadEW.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/road/png/water.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/road/png/roadNS.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/road/png/roadSW.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/road/png/roadNW.png" type="Texture2D" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 ) ]
+vertices = PackedVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3 ) ]
+outlines = [ PackedVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 ) ]
 
 [sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 ) ]
+vertices = PackedVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3 ) ]
+outlines = [ PackedVector2Array( 0, -32, 50, -7, 0, 18, -50, -7 ) ]
 
 [resource]
 0/name = "grass"

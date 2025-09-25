@@ -10,3 +10,4 @@ res://src/Objects/UI.gd
 res://src/Levels/TileMapLayer.gd
 res://src/Objects/Tower.gd
 res://src/Objects/EnemyTarget.gd
+res://Bullet.gd
